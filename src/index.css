@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Avenir LT Std";
+    src: url("/src/assets/fonts/Avenir LT Std/AvenirLTStd-Medium.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Avenir LT Std";
+    src: url("/src/assets/fonts/Avenir LT Std/AvenirLTStd-Heavy.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Avenir LT Std";
+    src: url("/src/assets/fonts/Avenir LT Std/AvenirLTStd-Black.woff2") format("woff2");
+    font-weight: 900;
+    font-style: normal;
+}
+
+
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+    scroll-behavior: smooth;
+}

@@ -1,0 +1,22 @@
+import React from 'react';
+import LandingSection from '../landingpages/LandingSection';
+import Navbar from '../landingpages/Navbar';
+import OcrWorksSection from '../landingpages/OcrWorksSection';
+
+const LandingPage = () => {
+    return (
+        <div>
+            <div className='w-full px-4 sm:px-6 lg:px-12 py-5'>
+                <Navbar />
+            </div>
+            <div className='w-full px-4 sm:px-6 lg:px-0'>
+                <LandingSection />
+            </div>
+            <div className='w-full px-4 sm:px-6 lg:px-12 py-5'>
+                <OcrWorksSection />
+            </div>
+        </div >
+    );
+}
+
+export default LandingPage;
