@@ -10,34 +10,29 @@ const features = [
   {
     icon: <ComplexIcon />,
     label: "Multi-language OCR + language autodetect",
-    color: "#EADBAF",
   },
   {
     icon: <LargeIcon />,
     label: "Table detection & CSV/XLSX export",
-    color: "#C5D4E2",
   },
   {
     icon: <HandWriteIcon />,
     label: "Handwriting recognition (HWR) option",
-    color: "#DCD2E0",
   },
   {
     icon: <SearchPage />,
     label: "Per-region confidence highlighting",
-    color: "#DCD2E0",
   },
   {
     icon: <WeatherIcon />,
     label: "Per-region confidence highlighting",
-    color: "#EADBAF",
   },
   {
     icon: <ArrowSwapIcon />,
     label: "Developer SDKs (Python, Node, Java) + cURL quickstart",
-    color: "#C5D4E2",
   },
 ];
+
 
 const OcrWorksSection = () => {
   return (
@@ -66,12 +61,18 @@ const OcrWorksSection = () => {
           >
             {/* Icon Circle */}
             <div
-              className="shadow-[0px_2px_4px_0px_#00000040] rounded-full 
-                         w-[92px] h-[92px] flex justify-center items-center mb-10"
-              style={{ backgroundColor: item.color }}
+              className="
+    bg-[#C5D4E2]
+    shadow-[0px_2px_4px_0px_#00000040]
+    rounded-full 
+    w-[92px] h-[92px] 
+    flex justify-center items-center 
+    mb-10
+  "
             >
               {item.icon}
             </div>
+
 
             {/* Label */}
             <h5 className="font-avenir font-semibold lg:font-bold text-[16px] leading-[163%] capitalize text-[#121212] opacity-[0.71] px-10">

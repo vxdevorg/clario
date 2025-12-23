@@ -15,6 +15,10 @@ import ExportSuccessfulPopup from './pages/ocrpopups/ExportSuccessfulPopup';
 import ExtractingFilesPopup from './pages/ocrpopups/ExtractingFilesPopup';
 import Signup from './pages/loginscreens/SignUp';
 import ChooseAFormatPopup from './pages/ocrpopups/ChooseAFormatPopup';
+import DemoSuccess from './pages/ocrpopups/DemoSuccess';
+import InvoiceDoc from './pages/ocrpopups/InvoiceDoc';
+import DemoLandingScreen from './pages/ocrscreens/DemoLandingScreen';
+import DemoLogin from './pages/loginscreens/DemoLogin';
 
 const App = () => {
   return (
@@ -24,7 +28,9 @@ const App = () => {
         <Route path="/businessinquiry" element={<BusinessInquiry />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signinbusiness" element={<SignInBusiness />} />
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/LandingPage" element={<LandingPage />} />
+        <Route path="/DemoLogin" element={<DemoLogin />} />
+        <Route path="/" element={<DemoLandingScreen />} />
         <Route path="/accountpage" element={<AccountPage />} />
         <Route path="/enterprisescreen" element={<EnterpriseScreen />} />
         <Route path="/originalextractPage" element={<OriginalExtractPage />} />
@@ -35,6 +41,8 @@ const App = () => {
         <Route path="/ExportSuccessfulPopup" element={<ExportSuccessfulPopup />} />
         <Route path="/ExtractingFilesPopup" element={<ExtractingFilesPopup />} />
         <Route path="/ChooseAFormatPopup" element={<ChooseAFormatPopup />} />
+        <Route path="/DemoSuccess" element={<DemoSuccess />} />
+        <Route path="/InvoiceDoc" element={<InvoiceDoc />} />
       </Routes>
     </div>
   );

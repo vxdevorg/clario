@@ -18,12 +18,6 @@ const SignInBusiness = () => {
         <div className="w-full min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat bg-[linear-gradient(76.43deg,#B5CBDD_11.39%,#D9E5EF_88.36%)]"
             style={{ backgroundImage: `url(${bgimg})` }}>
             <div className="w-full max-w-[480px] rounded-[40px] bg-[linear-gradient(205.4deg,#D0DFEB_36.54%,rgba(253,253,253,0.6)_180%)] shadow-[0px_16px_25.2px_7px_#1A55701A] p-4 sm:p-6 md:p-8 flex flex-col gap-3 relative">
-
-                {/* Close Button */}
-                <div className="absolute right-4 sm:right-6 top-4 sm:top-6 cursor-pointer">
-                    <CloseIcon width={20} height={20} />
-                </div>
-
                 {/* Title */}
                 <h2 className="font-avenir font-semibold lg:font-bold text-[22px] md:text-[30px] text-center text-[#121212] pt-2 sm:pt-0">
                    Business Sign In
@@ -59,7 +53,7 @@ const SignInBusiness = () => {
                             }
         `}
                     >
-                        Business
+                        Enterprise
                     </button>
 
                 </div>
@@ -107,7 +101,7 @@ const SignInBusiness = () => {
                 {/* Sign Up Button */}
                 <div className="flex justify-center pt-1 sm:pt-0">
                     <button className="font-avenir font-[750] text-[14px] sm:text-[16px] text-[#FDFDFD] bg-[#21527D] rounded-[16px] w-[160px] sm:w-[180px] h-[46px] sm:h-[50px]">
-                        Sign Up
+                       Sign In
                     </button>
                 </div>
 
@@ -130,8 +124,8 @@ const SignInBusiness = () => {
 
                 {/* Bottom Text */}
                 <p className="text-center font-avenir text-[13px] sm:text-[14px] text-[#121212]/40 pt-1 sm:pt-0">
-                    Already have an account?
-                    <span className="font-[600] text-[14px] sm:text-[16px] text-[#21527D] ml-1 cursor-pointer">Sign In</span>
+                   Create a new account?
+                    <span className="font-[600] text-[14px] sm:text-[16px] text-[#21527D] ml-1 cursor-pointer">Business Sign up</span>
                 </p>
 
             </div>

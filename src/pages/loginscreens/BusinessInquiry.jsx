@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import EyeIcon from '../../assets/icons/loginpages/EyeIcon';
 import CheckCircleIcon from '../../assets/icons/loginpages/CheckCircleIcon';
 import GoogleIcon from '../../assets/icons/loginpages/GoogleIcon';
@@ -7,12 +7,14 @@ import CloseIcon from '../../assets/icons/loginpages/CloseIcon';
 import bgimg from '../../assets/images/formbgimg.webp'
 import DownArrowIconForm from '../../assets/icons/DownArrowIconForm';
 import { useNavigate, useLocation, Link } from "react-router-dom";
+import countries from '../countryCodes';
 
 
 const BusinessInquiry = () => {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState("");
     const [industryOpen, setIndustryOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState("personal");
     const [expandedSections, setExpandedSections] = useState({
         logistics: false,
         finance: false,
@@ -33,19 +35,63 @@ const BusinessInquiry = () => {
             return newState;
         });
     };
-    const navigate = useNavigate();
-    const location = useLocation();
 
-    const activeTab = location.pathname === "/signup" ? "personal" : "business";
+    useEffect(() => {
+        if (location.pathname === "/signup") setActiveTab("personal");
+        if (location.pathname === "/businessinquiry") setActiveTab("business");
+    }, [location.pathname]);
+    const [openCountry, setOpenCountry] = useState(false);
+    const [selectedCountry, setSelectedCountry] = useState(
+        countries.find(c => c.code === "+91") || countries[0]
+    );
+    const [searchCountry, setSearchCountry] = useState("");
+    const [passwordVisible, setPasswordVisible] = useState(false);
+    const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+
+    const countryDropdownRef = useRef(null);
+
+    const filteredCountries = countries.filter((c) =>
+        c.name.toLowerCase().includes(searchCountry.toLowerCase()) ||
+        c.code.includes(searchCountry)
+    );
+
+    const getFlagEmoji = (isoCode) => {
+        if (!isoCode) return "🇺🇸"; // Default flag
+        return isoCode
+            .toUpperCase()
+            .replace(/./g, (char) =>
+                String.fromCodePoint(127397 + char.charCodeAt())
+            );
+    };
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                countryDropdownRef.current &&
+                !countryDropdownRef.current.contains(event.target)
+            ) {
+                setOpenCountry(false);
+                setSearchCountry("");
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+    };
+
+    const toggleConfirmPasswordVisibility = () => {
+        setConfirmPasswordVisible(!confirmPasswordVisible);
+    };
     return (
         <div className="w-full min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat bg-[linear-gradient(76.43deg,#B5CBDD_11.39%,#D9E5EF_88.36%)]"
             style={{ backgroundImage: `url(${bgimg})` }}>
             <div className="w-full max-w-[480px] rounded-[40px] bg-[linear-gradient(205.4deg,#D0DFEB_36.54%,rgba(253,253,253,0.6)_180%)] shadow-[0px_16px_25.2px_7px_#1A55701A] py-2 px-4 md:px-8 flex flex-col gap-2 relative">
-
-                {/* Close Button */}
-                <div className="absolute right-4 sm:right-6 top-4 sm:top-6 cursor-pointer">
-                    <CloseIcon width={20} height={20} />
-                </div>
 
                 {/* Title */}
                 <h2 className="font-avenir font-semibold lg:font-bold text-[22px] md:text-[30px] text-center text-[#121212]">
@@ -82,7 +128,7 @@ const BusinessInquiry = () => {
                             }
         `}
                     >
-                        Business
+                        EnterPrise
                     </button>
 
                 </div>
@@ -118,15 +164,64 @@ const BusinessInquiry = () => {
 
                     {/* Phone Number */}
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">
-                        <h2 className="font-avenir font-[700] text-[14px] sm:text-[16px] text-[#21527D]">
+                        <label className="font-avenir font-[700] text-[14px] sm:text-[16px] text-[#21527D]">
                             Phone Number
-                        </h2>
+                        </label>
+                        <div ref={countryDropdownRef} className="relative flex w-full sm:w-[250px] h-[30px] bg-[#FDFDFD] rounded-[100px] shadow-[0px_2px_4px_1px_#21527D26]">
+                            {/* Country Selector */}
+                            <div
+                                className="w-[75px] flex items-center justify-between px-2 cursor-pointer font-avenir text-[12px] text-[#21527D]"
+                                onClick={() => setOpenCountry(!openCountry)}
+                            >
+                                <div className="flex items-center gap-1">
+                                    {getFlagEmoji(selectedCountry?.iso)} {selectedCountry?.code}
+                                </div>
+                                <DownArrowIconForm className={`transition-transform duration-200 ${openCountry ? "rotate-180" : ""}`} />
+                            </div>
 
-                        <input
-                            type="text"
-                            placeholder="98xxxxxx76"
-                            className="w-full sm:w-[250px] h-[30px] rounded-[100px] bg-[#FDFDFD] shadow-[0px_2px_4px_1px_#21527D26] px-4 font-avenir text-[12px] text-[#82A9CC] placeholder:text-[#82A9CC] outline-none"
-                        />
+                            <div className="w-[1px] bg-[#21527D26]" />
+
+                            <input
+                                type="tel"
+                                placeholder="98xxxxxx76"
+                                className="flex-1 px-3 font-avenir text-[12px] text-[#82A9CC] placeholder:text-[#82A9CC] outline-none bg-transparent"
+                            />
+
+                            {/* Country Dropdown */}
+                            {openCountry && (
+                                <div className="absolute top-full left-0 mt-1 w-[100px] bg-white rounded-xl shadow-lg overflow-hidden z-50 ">
+                                    <input
+                                        type="text"
+                                        placeholder="Search country"
+                                        value={searchCountry}
+                                        onChange={(e) => setSearchCountry(e.target.value)}
+                                        className="w-full px-3 py-2 font-avenir text-[12px] outline-none border-b border-[#E5EAF0] placeholder:text-[#869EB6]"
+                                        autoFocus
+                                    />
+                                    <div className="max-h-[240px] overflow-y-auto scrollbar-hide">
+                                        {filteredCountries.length > 0 ? (
+                                            filteredCountries.map((c) => (
+                                                <div
+                                                    key={c.iso}
+                                                    className="px-3 py-2 text-[12px] flex items-center gap-2 cursor-pointer hover:bg-[#F0F4F8]"
+                                                    onClick={() => {
+                                                        setSelectedCountry(c);
+                                                        setOpenCountry(false);
+                                                        setSearchCountry("");
+                                                    }}
+                                                >
+                                                    {getFlagEmoji(c.iso)}({c.code})
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="px-3 py-2 text-[12px] text-[#869EB6]">
+                                                No country found
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
 
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 sm:gap-0">

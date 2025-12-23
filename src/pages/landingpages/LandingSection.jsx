@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import img1 from '../../assets/images/clarioimg.webp';
-import bgimg from '../../assets/images/backgroundimg.webp';
 import LandingPopup from '../ocrpopups/LandingPopup';
 
 const LandingSection = () => {
@@ -17,9 +16,7 @@ const LandingSection = () => {
     return (
         <div
             className="w-full flex justify-center items-center 
-                       bg-cover bg-center bg-no-repeat py-5"
-            style={{ backgroundImage: `url(${bgimg})` }}
-        >
+                       bg-cover bg-center bg-no-repeat py-5">
             <div className="
                 w-full max-w-[900px] 
                 bg-[#FDFDFD] 

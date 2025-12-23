@@ -63,34 +63,7 @@ const UserAccount = () => {
             </div>
 
             {/* BUTTONS */}
-            <div className='flex flex-row flex-wrap gap-5 mt-10 justify-center'>
-
-                {/* ADD ACCOUNT */}
-                <button className='w-full sm:w-[300px] h-[55px] md:h-[65px] flex items-center justify-center gap-3 
-                font-avenir font-[350] text-[20px] md:text-[24px] leading-[100%] tracking-[0.09em] 
-                capitalize text-[#21527D] bg-[#E9F5FF] shadow-[0px_1px_4px_0px_#0000001A] rounded-[100px]'>
-                    <PlusCircleIcon />
-                    Add account
-                </button>
-
-                {/* LOGOUT */}
-                <button className='w-full sm:w-[235px] h-[55px] md:h-[65px] flex items-center justify-center gap-3 
-                font-avenir font-[350] text-[20px] md:text-[24px] leading-[100%] tracking-[0.09em] 
-                capitalize text-[#21527D] bg-[#E9F5FF] shadow-[0px_1px_4px_0px_#0000001A] rounded-[100px]'>
-                    <RotateArrowIcon />
-                    Logout
-                </button>
-
-                {/* DELETE ACCOUNT */}
-                <button className='w-full sm:w-[235px] h-[55px] md:h-[65px] flex items-center justify-center gap-3 
-                font-avenir font-[350] text-[20px] md:text-[24px] leading-[100%] tracking-[0.09em] capitalize 
-                text-[#C62525] bg-[#FFF4F4] border border-[0.25px] border-[#D25B5C] 
-                shadow-[0px_1px_4px_0px_#0000001A] rounded-[100px]'>
-                    <TrashIcon />
-                    Delete
-                </button>
-
-            </div>
+           
         </div>
     );
 };
